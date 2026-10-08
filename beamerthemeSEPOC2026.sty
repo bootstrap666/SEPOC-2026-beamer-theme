@@ -1,0 +1,82 @@
+\ProvidesPackage{beamerthemeSEPOC2026}[2026/10/08 SEPOC 2026 Beamer theme]
+\mode<presentation>{
+  \RequirePackage{tikz}
+  \RequirePackage{graphicx}
+  \RequirePackage{etoolbox}
+  \RequirePackage{beamercolorthemeSEPOC2026}
+  \RequirePackage{beamerfontthemeSEPOC2026}
+
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{blocks}[rounded][shadow=false]
+  \setbeamertemplate{itemize item}{\color{sepocorange}\small$\blacktriangleright$}
+  \setbeamertemplate{itemize subitem}{\color{sepocorange}\scriptsize$\blacktriangleright$}
+  \setbeamertemplate{enumerate item}{\color{sepocorange}\insertenumlabel.}
+
+  % The original PowerPoint uses a 16:9 master with a fixed photographic header.
+  \newcommand{\SEPOCHeader}{%
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[anchor=north west,inner sep=0pt] at (current page.north west) {%
+        \includegraphics[width=\paperwidth,height=1.80in]{assets/image1.png}};
+    \end{tikzpicture}%
+  }
+
+  \newcommand{\SEPOCFooter}{%
+    \begin{tikzpicture}[remember picture,overlay]
+      % Sponsor row: deliberately assembled from the original PPT assets.
+      \draw[sepocorange,line width=0.55pt] ([xshift=2.42cm,yshift=0.34in]current page.south west) --
+        ([xshift=2.42cm,yshift=0.02in]current page.south west);
+      \draw[sepocorange,line width=0.55pt] ([xshift=3.68cm,yshift=0.34in]current page.south west) --
+        ([xshift=3.68cm,yshift=0.02in]current page.south west);
+      \draw[sepocorange,line width=0.55pt] ([xshift=8.69cm,yshift=0.34in]current page.south west) --
+        ([xshift=8.69cm,yshift=0.02in]current page.south west);
+      \draw[sepocorange,line width=0.55pt] ([xshift=10.99cm,yshift=0.34in]current page.south west) --
+        ([xshift=10.99cm,yshift=0.02in]current page.south west);
+
+      \node[anchor=south west,inner sep=0pt] at ([xshift=2.70cm,yshift=0.04in]current page.south west) {\includegraphics[width=0.82cm]{assets/image2.png}};
+      \node[anchor=south west,inner sep=0pt] at ([xshift=3.98cm,yshift=0.055in]current page.south west) {\includegraphics[width=4.25cm,height=0.25in,keepaspectratio]{assets/image3.png}};
+      \node[anchor=south west,inner sep=0pt] at ([xshift=6.03cm,yshift=0.035in]current page.south west) {\includegraphics[width=4.55cm,height=0.28in,keepaspectratio]{assets/image4.png}};
+      \node[anchor=south west,inner sep=0pt] at ([xshift=9.28cm,yshift=0.055in]current page.south west) {\includegraphics[width=2.10cm,height=0.25in,keepaspectratio]{assets/image5.png}};
+      \node[anchor=south east,inner sep=0pt,font=\sffamily\small] at ([xshift=-0.48cm,yshift=0.07in]current page.south east) {\insertframenumber};
+    \end{tikzpicture}%
+  }
+
+  \setbeamertemplate{headline}{\vspace*{1.80in}\SEPOCHeader}
+  \setbeamertemplate{footline}{\vspace*{0.48in}\SEPOCFooter}
+
+  \setbeamertemplate{frametitle}{%
+    \vspace*{0.18in}%
+    \hspace*{0.45in}%
+    \insertframetitle\par
+    \vspace*{0.06in}%
+    \hspace*{0.45in}\color{sepocorange}\rule{0.55in}{1.3pt}%
+    \vspace*{0.10in}%
+  }
+
+  % Keep the body clear of the fixed header/footer.
+  \setbeamersize{text margin left=0.55in,text margin right=0.55in}
+  \setlength{\headheight}{1.80in}
+  \setlength{\footheight}{0.48in}
+  \addtolength{\textheight}{-0.55in}
+
+  \defbeamertemplate*{title page}{SEPOC2026}{%
+    \vbox{}
+    \vfill
+    \begin{beamercolorbox}[wd=\textwidth,sep=0pt,center]{title}
+      \usebeamerfont{title}\inserttitle\par
+    \end{beamercolorbox}
+    \vskip0.35em
+    \begin{beamercolorbox}[wd=\textwidth,sep=0pt,center]{author}
+      \usebeamerfont{author}\insertauthor\par
+    \end{beamercolorbox}
+    \vskip0.15em
+    \begin{beamercolorbox}[wd=\textwidth,sep=0pt,center]{institute}
+      \usebeamerfont{institute}\insertinstitute\par
+    \end{beamercolorbox}
+    \vfill
+    \vskip0.2em
+  }
+
+  \AtBeginDocument{%
+    \hypersetup{colorlinks=true,linkcolor=sepocorange,urlcolor=sepocorange,citecolor=sepocorange}%
+  }
+}
