@@ -22,40 +22,24 @@
 
   \newcommand{\SEPOCFooter}{%
     \begin{tikzpicture}[remember picture,overlay]
-      % The sponsor strip is centered on the physical center of the slide.
-      % The frame number is a separate object and therefore cannot affect
-      % the horizontal position of the sponsor strip.
-      \node[anchor=south,inner sep=0pt] at ([yshift=0.035in]current page.south) {%
-        \begin{tikzpicture}[baseline]
-          \draw[sepocorange,line width=0.55pt] (0.00cm,0.02in) -- (0.00cm,0.34in);
-          \node[anchor=south west,inner sep=0pt] at (0.28cm,0.035in) {\includegraphics[width=0.82cm]{assets/image2.png}};
-          \draw[sepocorange,line width=0.55pt] (1.26cm,0.02in) -- (1.26cm,0.34in);
-          \node[anchor=south west,inner sep=0pt] at (1.56cm,0.055in) {\includegraphics[width=4.25cm,height=0.25in,keepaspectratio]{assets/image3.png}};
-          \node[anchor=south west,inner sep=0pt] at (3.61cm,0.035in) {\includegraphics[width=4.55cm,height=0.28in,keepaspectratio]{assets/image4.png}};
-          \draw[sepocorange,line width=0.55pt] (8.66cm,0.02in) -- (8.66cm,0.34in);
-          \node[anchor=south west,inner sep=0pt] at (8.95cm,0.055in) {\includegraphics[width=2.10cm,height=0.25in,keepaspectratio]{assets/image5.png}};
-          \draw[sepocorange,line width=0.55pt] (11.25cm,0.02in) -- (11.25cm,0.34in);
-        \end{tikzpicture}%
-      };
-      % Page number is deliberately independent of the centered sponsor strip.
+      % Sponsor strip taken directly from the original PowerPoint footer.
+      % The strip is centered on the physical slide, independently of the page number.
+      \node[anchor=south west,inner sep=0pt] at
+        ([yshift=0.10in]current page.south west) {%
+          \makebox[\paperwidth][c]{%
+            \includegraphics[width=3.84in]{assets/footer-cropped.png}%
+          }%
+        };
+
+      % Page number is independent of the sponsor strip and is omitted on the title slide.
       \ifnum\insertframenumber>1
-        \node[anchor=south east,inner sep=0pt,font=\sffamily\small] at ([xshift=-0.48cm,yshift=0.07in]current page.south east) {\insertframenumber};
+        \node[anchor=south east,inner sep=0pt,font=\sffamily\small] at
+          ([xshift=-0.48cm,yshift=0.07in]current page.south east) {\insertframenumber};
       \fi
     \end{tikzpicture}%
   }
 
-  % Fixed header matching the PowerPoint master dimensions.
-  % The source image has already been cropped according to the PPTX
-  % srcRect, so it is safe to scale it to the full slide width.
-  \setbeamertemplate{headline}{%
-    \vbox to 0.854in{%
-      \hbox to \paperwidth{%
-        \includegraphics[width=\paperwidth,height=0.854in]{assets/image1-cropped.png}%
-        \hss
-      }%
-      \vss
-    }%
-  }
+  \setbeamertemplate{headline}{\vspace*{1.80in}\SEPOCHeader}
   \setbeamertemplate{footline}{\vspace*{0.48in}\SEPOCFooter}
 
   \setbeamertemplate{frametitle}{%
@@ -69,7 +53,7 @@
 
   % Keep the body clear of the fixed header/footer.
   \setbeamersize{text margin left=0.55in,text margin right=0.55in}
-  \setlength{\headheight}{0.854in}
+  \setlength{\headheight}{1.80in}
   \setlength{\footheight}{0.48in}
   \addtolength{\textheight}{-0.55in}
 
